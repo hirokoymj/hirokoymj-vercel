@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2976217a.css",
+    "main.js": "/static/js/main.7c0a3810.js",
+    "static/media/flag_CA.png": "/static/media/flag_CA.c4ffaeb7bab0410d5168.png",
+    "static/media/flag_JP.png": "/static/media/flag_JP.b3e458380bf9b8d0f80e.png",
+    "static/media/flag_TX.png": "/static/media/flag_TX.32bc579aa424269dd775.png",
+    "index.html": "/index.html",
+    "main.2976217a.css.map": "/static/css/main.2976217a.css.map",
+    "main.7c0a3810.js.map": "/static/js/main.7c0a3810.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2976217a.css",
+    "static/js/main.7c0a3810.js"
+  ]
+}
