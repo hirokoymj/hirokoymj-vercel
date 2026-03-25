@@ -3,11 +3,8 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { makeStyles } from 'tss-react/mui';
 import { Theme } from '@mui/material/styles';
-import ResumePDF from '../../assets/resume.pdf'; //11-12-2025
 
 const useStyles = makeStyles()((theme: Theme) => ({
   footer: {
@@ -50,12 +47,7 @@ export const PageFooter = () => {
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getFullYear()} hirokoymj.com All rights reserved.
       </Typography>
-      <IconButtonLink
-        icon={<GitHubIcon fontSize="large" />}
-        to="https://github.com/hirokoymj/hirokoy-web-frontend-ts"
-      />
-      <IconButtonLink icon={<LinkedInIcon fontSize="large" />} to="https://www.linkedin.com/in/hirokoyamaji/" />
-      <IconButtonLink icon={<PictureAsPdfIcon fontSize="large" />} to={ResumePDF} />
+      <IconButtonLink icon={<GitHubIcon fontSize="large" />} to="https://github.com/hirokoymj/hirokoymj-vercel" />
     </footer>
   );
 };

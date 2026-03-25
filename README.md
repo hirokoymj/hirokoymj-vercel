@@ -10,49 +10,21 @@
 - React Router v6
 - Redux Toolkit
 - React Hook Form
-- Apollo Client(GraphQL)
+- Weather API
 - Google Account Sign-in
-- Material UI(v7)
+- MUI (Material UI) v7
+- AI: Gemini 2.5 Flash
 
 ## Backend
 
-- Node.js
-- TypeScript
-- MongoDB Atlas/Mongoose
 - Apollo Server v3 (GraphQL)
-- [Backend repository](https://github.com/hirokoymj/hiroko-web-backend-new)
-- [Backend API](https://hiroko-web-backend-new-08d39ee2590b.herokuapp.com/)
+- MongoDB Atlas
+- Mongoose
+- [Backend API repository](https://github.com/hirokoymj/hirokoymj-backend-vercel)
 
 ## Deployment
 
-- Heroku
-
-```js
-git heroku login
-heroku git:remote -a <app-name>
-git push heroku main
-```
-
-## GraphQL + Codegen + TypeScript
-
-1. Installing necessary packages.
-
-```js
-npm install -D @graphql-codegen/cli @graphql-codegen/client-preset
-```
-
-2. Add a generate command in package.json
-
-```js
-"scripts": {
-  "generate": "graphql-codegen"
-},
-```
-
-3. Created [codegen.ts](./codegen.ts).
-4. Runs `npm run generate` and the queries and mutations are typed.
-
-   ![](./src/assets/graphql+codegen.png)
+Vercel
 
 <hr />
 
