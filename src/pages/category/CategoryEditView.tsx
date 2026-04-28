@@ -32,3 +32,5 @@ export const CategoryEditView = () => {
     </div>
   );
 };
+
+export default CategoryEditView;

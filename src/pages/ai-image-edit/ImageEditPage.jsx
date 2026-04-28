@@ -129,3 +129,5 @@ export const ImageEditPage = () => {
     </Container>
   );
 };
+
+export default ImageEditPage;

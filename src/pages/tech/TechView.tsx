@@ -76,3 +76,5 @@ export const TechView = () => {
     </Grid>
   );
 };
+
+export default TechView;

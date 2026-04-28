@@ -16,3 +16,5 @@ export const NotFound = () => {
     </Box>
   );
 };
+
+export default NotFound;

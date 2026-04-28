@@ -38,3 +38,5 @@ export const TopicEditView = () => {
     </>
   );
 };
+
+export default TopicEditView;

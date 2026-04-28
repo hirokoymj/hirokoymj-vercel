@@ -96,3 +96,5 @@ export const SignupView = () => {
     </Container>
   );
 };
+
+export default SignupView;

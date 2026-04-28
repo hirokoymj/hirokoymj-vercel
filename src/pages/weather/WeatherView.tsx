@@ -39,3 +39,5 @@ export const WeatherView = () => {
     </>
   );
 };
+
+export default WeatherView;
