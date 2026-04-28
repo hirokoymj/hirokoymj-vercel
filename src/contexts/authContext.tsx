@@ -22,7 +22,6 @@ export type CurrentUser = {
 };
 const AuthContext = createContext<CurrentUser | null>(null);
 
-// 2. Create a Hooks - other components must use this when to access a user.
 export function useAuth() {
   const user = useContext(AuthContext);
   if (user === undefined) {
@@ -30,7 +29,7 @@ export function useAuth() {
   }
   return user;
 }
-// 3. create AuthProvider
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);

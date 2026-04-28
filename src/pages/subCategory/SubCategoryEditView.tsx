@@ -35,3 +35,5 @@ export const SubCategoryEditView = () => {
     </>
   );
 };
+
+export default SubCategoryEditView;

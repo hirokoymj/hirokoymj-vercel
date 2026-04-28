@@ -154,3 +154,5 @@ Return only JSON with:
     </Container>
   );
 };
+
+export default RecipePage;

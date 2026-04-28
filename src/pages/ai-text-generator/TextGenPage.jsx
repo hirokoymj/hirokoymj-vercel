@@ -192,3 +192,5 @@ export const TextGenPage = () => {
     </Container>
   );
 };
+
+export default TextGenPage;

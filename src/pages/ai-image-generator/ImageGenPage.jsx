@@ -99,3 +99,5 @@ export const ImageGenPage = () => {
     </Container>
   );
 };
+
+export default ImageGenPage;

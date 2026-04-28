@@ -1,55 +1,58 @@
-# React.js application Architecture
+# React.js Application Architecture
 
 ### 1. State Management
 
-- Lifting state up - Parent manages state.
-- Inverse data flow — Child updates Parent's state via a callback props.
-- Parent name convention - xxxManager or xxxLayout. [CategoryLayout.tsx](./src/layouts/CategoryLayout.tsx)
-- Custom Hooks - complex logic is moved to the outside of Parent componet - e.g. submitForm)
+- Lifting state up — Parent manages state.
+- Inverse data flow — Child updates Parent's state via a callback prop.
+- Parent naming convention — `xxxManager` or `xxxLayout`. [CategoryLayout.tsx](./src/layouts/CategoryLayout.tsx)
+- Custom Hooks — complex logic is moved outside of the Parent component (e.g. `submitForm`).
   - [useCategoryForm.ts](./src/hooks/useCategoryForm.ts)
   - [CategoryForm.tsx](./src/pages/category/CategoryForm.tsx)
 
 ### 2. Props Management
 
-- Context API / Redux (avoid Prop drilling)
-- useCallback + React.memo (Caching)
-- useCallback - returns a stable function reference
-- React.memo ==> shallow comparison
+**Avoid Props Drilling**
+
+- Context API [authContext.tsx](./src/contexts/authContext.tsx)
+- Redux [store.ts](./src/redux/store.ts)
+
+**Memory / Caching / Skip a Child Render**
+
+- `useCallback` + `React.memo` (caching — returns a stable function reference)
+- `React.memo` — shallow comparison
 
 ### 3. Fetch data
 
 - Use GraphQL - a single endpoint
-- Use third-party tool (React Query) - build-in cache mechanizme.
-- Manual fetch - useEffect + aync Fech API + new AbortController() in cleanup function.
-
-```
-const { data, loading, error } = useQuery(GraphQL, options);
-const [mutateFunction, { data, loading, error }] = useMutation(GraphQL, options);
-useEffect(() => {}, [])
-```
+- Use third-party tool (TanStack Query) - built-in cache mechanism.
+- Manual fetch - `useEffect` + `acync Fech API` + `AbortController` + `Cleanup function`. [example](https://github.com/hirokoymj/great-frontend/blob/main/a_Quiz/Quiz_topic_pitfalls.md#q3-memory-leak-on-unmount-%EF%B8%8F)
+- [Query](./src/queries/Category.ts) | [Mutation](./src/mutations/Category.ts)
 
 ### 4. Performance
 
 - useMemo, useCallback, React.memo (cached value, stable function reference, shallow ccomparison)
 - useEffect dependency
 
-### 5. ErrorBoundary & React.lazy - Route-base
+### 5. ErrorBoundary & React.lazy
 
-- Try catch for React components
+- `ErrorBoundary` acts as a try/catch for React components.
+- `React.lazy` + `Suspense` splits the bundle per route — each page loads only when the user navigates to it.
 
-### 6. UI, Responsive Design
+### 6. UI & Responsive Design
 
-- MUI Grid System is first choice because of JSX cleanliness, Tailwind CSS is the second choice but I don't like long inline css styel in JSX..
+- [MUI](https://mui.com/) Grid System is the first choice for JSX cleanliness.
+- `Tailwind CSS` is the second choice due to long inline class strings in JSX.
 
 ### 7. Reusable components
 
-- Use children as props ==> children is a placeholder.
+- Use children as props ==> children is a placeholder. [Buttons](./src/components/Buttons/ActionButton.tsx)
 
 ### 8. Form
 
-- React Hook Form + Yup (schema-base validation) + MUI
+- [React Hook Form ](https://react-hook-form.com/)+ Yup (schema-base validation)
+- [Form validation](./src/pages/validation/formValidations.ts)
 
-#### Sample
+#### Sample at hirokoymj.com
 
 ```js
 import React, { lazy, Suspense } from 'react';

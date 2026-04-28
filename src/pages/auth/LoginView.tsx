@@ -111,3 +111,5 @@ export const LoginView = () => {
     </Container>
   );
 };
+
+export default LoginView;

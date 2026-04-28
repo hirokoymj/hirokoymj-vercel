@@ -151,3 +151,5 @@ export const SummaryPage = () => {
     </Container>
   );
 };
+
+export default SummaryPage;
