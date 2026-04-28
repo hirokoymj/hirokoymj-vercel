@@ -13,8 +13,8 @@
 
 **Avoid Props Drilling**
 
-- Context API [authContext.tsx](./src/contexts/authContext.tsx)
-- Redux [store.ts](./src/redux/store.ts)
+- Context API [.tsx](./src/index.tsx)
+- Redux
 
 **Memory / Caching / Skip a Child Render**
 
@@ -23,14 +23,13 @@
 
 ### 3. Fetch data
 
-- Use GraphQL - a single endpoint
+- Use GraphQL - a single endpoint. [index.tsx](./src/index.tsx) | [Query](./src/queries) | [Mutation](./src/mutations)
 - Use third-party tool (TanStack Query) - built-in cache mechanism.
 - Manual fetch - `useEffect` + `acync Fech API` + `AbortController` + `Cleanup function`. [example](https://github.com/hirokoymj/great-frontend/blob/main/a_Quiz/Quiz_topic_pitfalls.md#q3-memory-leak-on-unmount-%EF%B8%8F)
-- [Query](./src/queries/Category.ts) | [Mutation](./src/mutations/Category.ts)
 
 ### 4. Performance
 
-- useMemo, useCallback, React.memo (cached value, stable function reference, shallow ccomparison)
+- useMemo, useCallback, React.memo (cached value, a stable function reference, shallow ccomparison)
 - useEffect dependency
 
 ### 5. ErrorBoundary & React.lazy
@@ -45,7 +44,7 @@
 
 ### 7. Reusable components
 
-- Use children as props ==> children is a placeholder. [Buttons](./src/components/Buttons/ActionButton.tsx)
+- Use `children` as props ==> children is a placeholder. [Buttons](./src/components/Buttons/ActionButton.tsx)
 
 ### 8. Form
 
@@ -96,10 +95,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <ErrorBoundary>
-        {' '}
         {/* ← catches any crash in the entire app */}
         <Suspense fallback={<PageLoader />}>
-          {' '}
           {/* ← handles lazy loading */}
           <Routes>
             <Route path="/" element={<RootLayout />}>
