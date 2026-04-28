@@ -4,27 +4,16 @@
 
 ## Frontend
 
-- React.js (v19)
-- TypeScript
-- React Hooks/Context
-- React Router v6
-- Redux Toolkit
-- React Hook Form
-- Weather API
-- Google Account Sign-in
-- MUI (Material UI) v7
-- AI: Gemini 2.5 Flash
+React.js (v19), TypeScript, React Hooks/Context, React Router v6, Redux Toolkit, React Hook Form, Weather API, Google Account Sign-in, MUI (Material UI) v7, Gemini 2.5 API
 
 ## Backend
 
-- Apollo Server v3 (GraphQL)
-- MongoDB Atlas
-- Mongoose
-- [Backend API repository](https://github.com/hirokoymj/hirokoymj-backend-vercel)
+Apollo Server v3 (GraphQL), MongoDB Atlas, Mongoose — [Backend API repository](https://github.com/hirokoymj/hirokoymj-backend-vercel)
 
 ## Deployment
 
-Vercel
+- **Vercel** — production site at https://www.hirokoymj.com
+- **Docker** — containerized image published to GitHub Container Registry via GitHub Actions
 
 <hr />
 
@@ -50,6 +39,40 @@ maps-backend.googleapis.com                  Maps JavaScript API
 ```
 
 ![](./src/assets/gcp-google-map-api.png)
+
+## CI/CD and Docker
+
+This project uses **GitHub Actions** to automatically build and publish a Docker image to **GitHub Container Registry (ghcr.io)** on every push to `main` or a new version tag.
+
+**Pipeline steps:**
+
+1. Checkout the repository
+2. Log in to GitHub Container Registry
+3. Build a Docker image using a multi-stage `Dockerfile`
+   - **Stage 1 (builder):** Installs dependencies with `npm ci` and builds the app with `npm run build`
+   - **Stage 2 (production):** Serves the built `dist/` folder using `serve`
+4. Push the image to `ghcr.io/hirokoymj/hirokoymj-vercel`
+
+**Dockerfile:** [Dockerfile](./Dockerfile)  
+**Workflow:** [.github/workflows/docker-publish.yml](./.github/workflows/docker-publish.yml)
+
+### Packages and Releases
+
+Pull and run the latest image:
+
+```bash
+docker pull --platform linux/amd64 ghcr.io/hirokoymj/hirokoymj-vercel:main
+docker run --platform linux/amd64 -p 3000:3000 ghcr.io/hirokoymj/hirokoymj-vercel:main
+```
+
+Pull a specific release version:
+
+```bash
+docker pull --platform linux/amd64 ghcr.io/hirokoymj/hirokoymj-vercel:v1.0.0
+docker run --platform linux/amd64 -p 3000:3000 ghcr.io/hirokoymj/hirokoymj-vercel:v1.0.0
+```
+
+Open `http://localhost:3000` in your browser.
 
 ## References
 
@@ -97,10 +120,3 @@ maps-backend.googleapis.com                  Maps JavaScript API
 **Google Gemini API Docs**
 
 - https://ai.google.dev/gemini-api/docs/function-calling?example=weather
-- https://ai.google.dev/gemini-api/docs/structured-output
-- https://ai.google.dev/gemini-api/docs/image-generation#gemini-image-editing
-- https://ai.google.dev/gemini-api/docs/text-generation#multimodal-input
-- https://ai.google.dev/gemini-api/docs/image-generation#image_generation_text-to-image
-- https://ai.google.dev/gemini-api/docs/text-generation
-- https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash
-- https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite
