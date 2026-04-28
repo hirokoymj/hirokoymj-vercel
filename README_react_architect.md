@@ -37,6 +37,15 @@
 - Use third-party tool (TanStack Query) - built-in cache mechanism.
 - Manual fetch - `useEffect` + `acync Fech API` + `AbortController` + `Cleanup function`. [example](https://github.com/hirokoymj/great-frontend/blob/main/a_Quiz/Quiz_topic_pitfalls.md#q3-memory-leak-on-unmount-%EF%B8%8F)
 
+```js
+// Without 3rd party tool -
+const [users, setUsers] = useState([]);
+const [error, setErrors] = useState(null);
+const [loading, setLoading] = useState(false);
+// With 3rd party tool - ONE LINE!
+const { data, loading, error } = useQuery(GraphQL, options);
+```
+
 ## 4. Performance
 
 - useMemo, useCallback, React.memo (cached value, a stable function reference, shallow ccomparison)
