@@ -13,7 +13,7 @@
 
 **Avoid Props Drilling**
 
-- Context API [.tsx](./src/index.tsx)
+- Context API [index.tsx](./src/index.tsx)
 - Redux
 
 **Memory / Caching / Skip a Child Render**
