@@ -1,6 +1,6 @@
-# React.js Application Architecture
+# React.js UI Architecture
 
-- [React.js Application Architecture](#reactjs-application-architecture)
+- [React.js UI Architecture](#reactjs-ui-architecture)
   - [1. State Management](#1-state-management)
   - [2. Props Management](#2-props-management)
   - [3. Fetch data](#3-fetch-data)
