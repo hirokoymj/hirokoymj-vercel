@@ -1,4 +1,14 @@
-# React.js Application Architecture
+## React.js Application Architecture
+
+- [React.js Application Architecture](#reactjs-application-architecture)
+  - [1. State Management](#1-state-management)
+  - [2. Props Management](#2-props-management)
+  - [3. Fetch data](#3-fetch-data)
+  - [4. Performance](#4-performance)
+  - [5. ErrorBoundary \& React.lazy](#5-errorboundary--reactlazy)
+  - [6. UI \& Responsive Design](#6-ui--responsive-design)
+  - [7. Reusable components](#7-reusable-components)
+  - [8. Form](#8-form)
 
 ### 1. State Management
 
@@ -51,7 +61,7 @@
 - [React Hook Form ](https://react-hook-form.com/)+ Yup (schema-base validation)
 - [Form validation](./src/pages/validation/formValidations.ts)
 
-#### Sample at hirokoymj.com
+**Sample code**
 
 ```js
 import React, { lazy, Suspense } from 'react';
