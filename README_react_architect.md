@@ -1,4 +1,4 @@
-## React.js Application Architecture
+# React.js Application Architecture
 
 - [React.js Application Architecture](#reactjs-application-architecture)
   - [1. State Management](#1-state-management)
@@ -10,7 +10,7 @@
   - [7. Reusable components](#7-reusable-components)
   - [8. Form](#8-form)
 
-### 1. State Management
+## 1. State Management
 
 - Lifting state up — Parent manages state.
 - Inverse data flow — Child updates Parent's state via a callback prop.
@@ -19,7 +19,7 @@
   - [useCategoryForm.ts](./src/hooks/useCategoryForm.ts)
   - [CategoryForm.tsx](./src/pages/category/CategoryForm.tsx)
 
-### 2. Props Management
+## 2. Props Management
 
 **Avoid Props Drilling**
 
@@ -31,32 +31,32 @@
 - `useCallback` + `React.memo` (caching — returns a stable function reference)
 - `React.memo` — shallow comparison
 
-### 3. Fetch data
+## 3. Fetch data
 
 - Use GraphQL - a single endpoint. [index.tsx](./src/index.tsx) | [Query](./src/queries) | [Mutation](./src/mutations)
 - Use third-party tool (TanStack Query) - built-in cache mechanism.
 - Manual fetch - `useEffect` + `acync Fech API` + `AbortController` + `Cleanup function`. [example](https://github.com/hirokoymj/great-frontend/blob/main/a_Quiz/Quiz_topic_pitfalls.md#q3-memory-leak-on-unmount-%EF%B8%8F)
 
-### 4. Performance
+## 4. Performance
 
 - useMemo, useCallback, React.memo (cached value, a stable function reference, shallow ccomparison)
 - useEffect dependency
 
-### 5. ErrorBoundary & React.lazy
+## 5. ErrorBoundary & React.lazy
 
 - `ErrorBoundary` acts as a try/catch for React components.
 - `React.lazy` + `Suspense` splits the bundle per route — each page loads only when the user navigates to it.
 
-### 6. UI & Responsive Design
+## 6. UI & Responsive Design
 
 - [MUI](https://mui.com/) Grid System is the first choice for JSX cleanliness.
 - `Tailwind CSS` is the second choice due to long inline class strings in JSX.
 
-### 7. Reusable components
+## 7. Reusable components
 
 - Use `children` as props ==> children is a placeholder. [Buttons](./src/components/Buttons/ActionButton.tsx)
 
-### 8. Form
+## 8. Form
 
 - [React Hook Form ](https://react-hook-form.com/)+ Yup (schema-base validation)
 - [Form validation](./src/pages/validation/formValidations.ts)
