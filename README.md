@@ -1,6 +1,18 @@
 # hirokoymj.com
 
-- Live URL : https://www.hirokoymj.com
+- [hirokoymj.com](#hirokoymjcom)
+  - [Live URL](#live-url)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Deployment](#deployment)
+  - [Google Cloud (GCP)](#google-cloud-gcp)
+  - [CI pipeline](#ci-pipeline)
+  - [Docker publish](#docker-publish)
+  - [References](#references)
+
+## Live URL
+
+https://www.hirokoymj.com
 
 ## Frontend
 
@@ -40,36 +52,24 @@ maps-backend.googleapis.com                  Maps JavaScript API
 
 ![](./src/assets/gcp-google-map-api.png)
 
-## CI/CD and Docker
+## CI pipeline
 
-This project uses **GitHub Actions** to automatically build and publish a Docker image to **GitHub Container Registry (ghcr.io)** on every push to `main` or a new version tag.
+Automated tests run on every push and pull request to `main` via GitHub Actions (`test.yml`).
 
-**Pipeline steps:**
+- Installs dependencies with `npm ci` for a clean, reproducible environment
+- Runs the full test suite with coverage using `npm run test:coverage`
+- Uploads the coverage report as a build artifact
+- Tests are written with **Vitest**, **React Testing Library**, and **MSW** (Mock Service Worker)
 
-1. Checkout the repository
-2. Log in to GitHub Container Registry
-3. Build a Docker image using a multi-stage `Dockerfile`
-   - **Stage 1 (builder):** Installs dependencies with `npm ci` and builds the app with `npm run build`
-   - **Stage 2 (production):** Serves the built `dist/` folder using `serve`
-4. Push the image to `ghcr.io/hirokoymj/hirokoymj-vercel`
+## Docker publish
 
-**Dockerfile:** [Dockerfile](./Dockerfile)  
-**Workflow:** [.github/workflows/docker-publish.yml](./.github/workflows/docker-publish.yml)
+A production Docker image is built and published to GitHub Container Registry automatically on every push to `main` via GitHub Actions (`docker_publish.yml`).
 
-### Packages and Releases
-
-Pull and run the latest image:
+**Run locally:**
 
 ```bash
 docker pull --platform linux/amd64 ghcr.io/hirokoymj/hirokoymj-vercel:main
 docker run --platform linux/amd64 -p 3000:3000 ghcr.io/hirokoymj/hirokoymj-vercel:main
-```
-
-Pull a specific release version:
-
-```bash
-docker pull --platform linux/amd64 ghcr.io/hirokoymj/hirokoymj-vercel:v1.0.0
-docker run --platform linux/amd64 -p 3000:3000 ghcr.io/hirokoymj/hirokoymj-vercel:v1.0.0
 ```
 
 Open `http://localhost:3000` in your browser.
