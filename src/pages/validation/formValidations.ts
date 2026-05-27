@@ -20,11 +20,6 @@ export const subCategoryFormSchema = yup.object().shape({
   order: yup.string().required('please add a display order.'),
 });
 
-export const loginFormSchema = yup.object().shape({
-  email: yup.string().required('email is required').email(),
-  password: yup.string().required('password is required'),
-});
-
 export const registerFormSchema = yup.object().shape({
   email: yup.string().required('email is required').email(),
   password: yup.string().required('password is required'),
@@ -32,4 +27,26 @@ export const registerFormSchema = yup.object().shape({
     .string()
     .required('Password confirmation is required')
     .oneOf([yup.ref('password')], 'Your passwords do not match.'),
+});
+
+export const signUpFormSchema = yup.object().shape({
+  email: yup.string().email('Invalid email format').required('Email is required').email('Enter a valid email address'),
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters')
+    .test(
+      'password-strength',
+      'Password must contain at least 3 of: lowercase letters, uppercase letters, numbers, special characters (!@#$%^&*)',
+      (value) => {
+        if (!value) return false;
+        const checks = [
+          /[a-z]/.test(value),
+          /[A-Z]/.test(value),
+          /[0-9]/.test(value),
+          /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value),
+        ];
+        return checks.filter(Boolean).length >= 3;
+      },
+    ),
 });
