@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { makeStyles } from 'tss-react/mui';
 
 import { RouterButton } from '../../components/Buttons/RouterButton';
-import { useAuth } from '../../contexts/authContext';
-import { doSignOut, CurrentUser } from '../../contexts/authContext';
 
 const useStyles = makeStyles()((theme) => ({
   button: {
@@ -16,33 +14,45 @@ const useStyles = makeStyles()((theme) => ({
     },
     fontWeight: 600,
   },
+  divider: {
+    color: '#fff',
+    mx: 1,
+  },
 }));
 
 export const LoginButton = () => {
   const { classes } = useStyles();
-  const navigate = useNavigate();
-  const { userLoggedIn, currentUser } = useAuth() as CurrentUser;
+  const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0();
+
   return (
     <>
-      {userLoggedIn ? (
+      {isAuthenticated ? (
         <>
           <Button
             variant="outlined"
             className={classes.button}
-            onClick={() => {
-              doSignOut().then(() => {
-                navigate('/login');
-              });
-            }}
+            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
           >
             Logout
           </Button>
           <Box component="span" m={1}>
-            {currentUser ? currentUser.displayName : ''}
+            {user?.email ?? ''}
           </Box>
         </>
       ) : (
-        <RouterButton to={'/login'} text="login" />
+        <>
+          <RouterButton to="/signup" text="Sign up" />
+          <Box component="span" sx={{ color: '#fff', mx: 1 }}>
+            |
+          </Box>
+          <Button
+            variant="outlined"
+            className={classes.button}
+            onClick={() => loginWithRedirect({ appState: { returnTo: '/dashboard' } })}
+          >
+            Login with Auth0
+          </Button>
+        </>
       )}
     </>
   );
