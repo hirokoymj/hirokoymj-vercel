@@ -76,7 +76,7 @@ export const LeftNaviagtion = () => {
           icon={<AutoAwesomeOutlinedIcon />}
           isActive={currentPath.includes('/ai-recipe')}
         />{' '}
-        <ListItemLink
+        {/* <ListItemLink
           to="/ai-chat"
           text="AI - Chat with Image"
           icon={<AutoAwesomeOutlinedIcon />}
@@ -105,7 +105,7 @@ export const LeftNaviagtion = () => {
           text="AI - text summarizer"
           icon={<AutoAwesomeOutlinedIcon />}
           isActive={currentPath.includes('/ai-summary')}
-        />
+        /> */}
       </List>
       <Divider />
       <List>
