@@ -60,7 +60,8 @@ function ProductList({ products }: ProductProps) {
   //   });
 
   const computedProducts = useMemo(() => {
-    let computedData: Product[] = category !== 'All' ? products.filter((p) => p.category === category) : products;
+    let computedData: Product[] = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    computedData = category !== 'All' ? computedData.filter((p) => p.category === category) : computedData;
     return [...computedData].sort((a, b) => {
       if (sortBy === 'price-low-high') {
         return a.price - b.price;
