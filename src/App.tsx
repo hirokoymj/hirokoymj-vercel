@@ -22,6 +22,8 @@ import { RecipePage } from './pages/ai-recipe/RecipePage';
 import { WeatherChatPage } from './pages/ai-weather/WeatherChatPage';
 import { TextGenPage } from './pages/ai-text-generator/TextGenPage';
 import { FileChatPage } from './pages/ai-file-chat/FileChatPage';
+import { ProductSearch } from './pages/search/ProductSearch';
+
 //code splitting for authentication pages
 const CallbackPage = lazy(() => import('./pages/auth/CallbackPage'));
 const SignupPage = lazy(() => import('./pages/auth/SignupPage'));
@@ -59,14 +61,15 @@ export default function App() {
             <Route path="topic" element={<TopicLayout />}>
               <Route path=":topicId/:categoryId" element={<TopicEditView />} />
             </Route>
-            <Route path="ai-summary" element={<SummaryPage />} />
-            <Route path="ai-image-generator" element={<ImageGenPage />} />
-            <Route path="ai-text-generator" element={<TextGenPage />} />
-            <Route path="ai-image-edit" element={<ImageEditPage />} />
             <Route path="ai-recipe" element={<RecipePage />} />
             <Route path="ai-weather" element={<WeatherChatPage />} />
-            <Route path="ai-chat" element={<FileChatPage />} />
+            <Route path="search" element={<ProductSearch />} />
             <Route path="*" element={<NotFound />} />
+            {/* <Route path="ai-summary" element={<SummaryPage />} />
+            <Route path="ai-image-generator" element={<ImageGenPage />} />
+            <Route path="ai-text-generator" element={<TextGenPage />} />
+            <Route path="ai-image-edit" element={<ImageEditPage />} /> */}
+            {/* <Route path="ai-chat" element={<FileChatPage />} /> */}
           </Route>
         </Routes>
       </Suspense>

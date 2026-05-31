@@ -76,37 +76,17 @@ export const LeftNaviagtion = () => {
           icon={<AutoAwesomeOutlinedIcon />}
           isActive={currentPath.includes('/ai-recipe')}
         />{' '}
-        {/* <ListItemLink
-          to="/ai-chat"
-          text="AI - Chat with Image"
-          icon={<AutoAwesomeOutlinedIcon />}
-          isActive={currentPath.includes('/ai-chat')}
-        />
-        <ListItemLink
-          to="/ai-image-edit"
-          text="AI - Image edit"
-          icon={<AutoAwesomeOutlinedIcon />}
-          isActive={currentPath.includes('/ai-image-edit')}
-        />
-        <ListItemLink
-          to="/ai-image-generator"
-          text="AI - image generator"
-          icon={<AutoAwesomeOutlinedIcon />}
-          isActive={currentPath.includes('/ai-image-generator')}
-        />
-        <ListItemLink
-          to="/ai-text-generator"
-          text="AI - text generator"
-          icon={<AutoAwesomeOutlinedIcon />}
-          isActive={currentPath.includes('/ai-text-generator')}
-        />
-        <ListItemLink
-          to="/ai-summary"
-          text="AI - text summarizer"
-          icon={<AutoAwesomeOutlinedIcon />}
-          isActive={currentPath.includes('/ai-summary')}
-        /> */}
       </List>
+      <Divider />
+      <List>
+        <ListItemLink
+          to="/search"
+          text="Filter demo"
+          icon={<ArticleOutlinedIcon />}
+          isActive={currentPath.includes('/search')}
+        />
+      </List>
+
       <Divider />
       <List>
         <ListItemLink
