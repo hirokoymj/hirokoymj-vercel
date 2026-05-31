@@ -5,6 +5,7 @@ import List from '@mui/material/List';
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
 import { Link, useLocation } from 'react-router-dom';
 import { makeStyles } from 'tss-react/mui';
@@ -82,7 +83,7 @@ export const LeftNaviagtion = () => {
         <ListItemLink
           to="/search"
           text="Filter demo"
-          icon={<ArticleOutlinedIcon />}
+          icon={<SearchIcon />}
           isActive={currentPath.includes('/search')}
         />
       </List>
