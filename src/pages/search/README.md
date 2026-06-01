@@ -7,35 +7,38 @@
 ```js
 const [searchTerm, setSearchTerm] = useState('');
 const [category, setCategory] = useState('All');
-const [sortBy, setSortBy] = useState('default');
+const [sortBy, setSortBy] = useState('asc');
+const [createdDate, setCreatedDate] = useState('');
 
-let computedProducts = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
-computedProducts = category !== 'All' ? products.filter((p) => p.category === category) : computedProducts;
-
-computedProducts = [...computedProducts].sort((a, b) => {
-  if (sortBy === 'price-low-high') {
-    return a.price - b.price;
-  } else if (sortBy === 'price-high-low') {
-    return b.price - a.price;
-  }
-  return 0;
+let filtered: Product[] = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+filtered = category !== 'All' ? filtered.filter((p) => p.category === category) : filtered;
+filtered = createdDate ? filtered.filter((p) => new Date(p.createdDate) < new Date(createdDate)) : filtered;
+filtered = [...filtered].sort((a, b) => {
+if (sortBy === 'asc') {
+	return a.price - b.price;
+} else if (sortBy === 'desc') {
+	return b.price - a.price;
+}
+return 0;
 });
+return filtered;
 ```
 
 ## useMemo
 
 ```js
   const computedProducts = useMemo(() => {
-    let computedData: Product[] = category !== 'All' ? products.filter((p) => p.category === category) : products;
-    return [...computedData].sort((a, b) => {
-      if (sortBy === 'price-low-high') {
+    let filtered: Product[] = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    filtered = category !== 'All' ? filtered.filter((p) => p.category === category) : filtered;
+    filtered = createdDate ? filtered.filter((p) => new Date(p.createdDate) < new Date(createdDate)) : filtered;
+    filtered = [...filtered].sort((a, b) => {
+      if (sortBy === 'asc') {
         return a.price - b.price;
-      } else if (sortBy === 'price-high-low') {
+      } else if (sortBy === 'desc') {
         return b.price - a.price;
       }
       return 0;
     });
-    return computedData;
-  }, [searchTerm, category, sortBy]);
+    return filtered;
+  }, [searchTerm, category, sortBy, createdDate]);
 ```

@@ -1,5 +1,21 @@
 import { useMemo, useState } from 'react';
-import { Box, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import {
+  Box,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TextField,
+} from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { Title } from '../../components/Titles/Title';
 import { TechStackHeader } from '../../components/Header/TechStackHeader';
@@ -9,6 +25,7 @@ interface Product {
   name: string;
   category: string;
   price: number;
+  createdDate: string;
 }
 
 interface ProductProps {
@@ -16,14 +33,14 @@ interface ProductProps {
 }
 
 const products: Product[] = [
-  { id: 1, name: 'iPhone 15', category: 'Electronics', price: 999 },
-  { id: 2, name: 'Samsung TV', category: 'Electronics', price: 700 },
-  { id: 3, name: 'Coffee Mug', category: 'Home', price: 12 },
-  { id: 4, name: 'Desk Lamp', category: 'Home', price: 35 },
-  { id: 5, name: 'MacBook Air', category: 'Electronics', price: 1199 },
-  { id: 6, name: 'Office Chair', category: 'Furniture', price: 220 },
-  { id: 7, name: 'Dining Table', category: 'Furniture', price: 450 },
-  { id: 8, name: 'Headphones', category: 'Electronics', price: 199 },
+  { id: 1, name: 'iPhone 15', category: 'Electronics', price: 999, createdDate: '2024-01-15' },
+  { id: 2, name: 'Samsung TV', category: 'Electronics', price: 700, createdDate: '2024-02-20' },
+  { id: 3, name: 'Coffee Mug', category: 'Home', price: 12, createdDate: '2024-03-05' },
+  { id: 4, name: 'Desk Lamp', category: 'Home', price: 35, createdDate: '2024-04-10' },
+  { id: 5, name: 'MacBook Air', category: 'Electronics', price: 1199, createdDate: '2024-05-22' },
+  { id: 6, name: 'Office Chair', category: 'Furniture', price: 220, createdDate: '2024-06-18' },
+  { id: 7, name: 'Dining Table', category: 'Furniture', price: 450, createdDate: '2024-07-30' },
+  { id: 8, name: 'Headphones', category: 'Electronics', price: 199, createdDate: '2024-08-14' },
 ];
 
 const headerInfo = {
@@ -39,39 +56,23 @@ export function ProductSearch() {
 function ProductList({ products }: ProductProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('All');
-  const [sortBy, setSortBy] = useState('default');
-
-  //   let computedProducts = products.filter((p) =>
-  //     p.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  //   );
-
-  //   computedProducts =
-  //     category !== 'All'
-  //       ? products.filter((p) => p.category === category)
-  //       : computedProducts;
-
-  //   computedProducts = [...computedProducts].sort((a, b) => {
-  //     if (sortBy === 'price-low-high') {
-  //       return a.price - b.price;
-  //     } else if (sortBy === 'price-high-low') {
-  //       return b.price - a.price;
-  //     }
-  //     return 0;
-  //   });
+  const [sortBy, setSortBy] = useState('asc');
+  const [createdDate, setCreatedDate] = useState('');
 
   const computedProducts = useMemo(() => {
-    let computedData: Product[] = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    computedData = category !== 'All' ? computedData.filter((p) => p.category === category) : computedData;
-    return [...computedData].sort((a, b) => {
-      if (sortBy === 'price-low-high') {
+    let filtered: Product[] = products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    filtered = category !== 'All' ? filtered.filter((p) => p.category === category) : filtered;
+    filtered = createdDate ? filtered.filter((p) => new Date(p.createdDate) < new Date(createdDate)) : filtered;
+    filtered = [...filtered].sort((a, b) => {
+      if (sortBy === 'asc') {
         return a.price - b.price;
-      } else if (sortBy === 'price-high-low') {
+      } else if (sortBy === 'desc') {
         return b.price - a.price;
       }
       return 0;
     });
-    return computedData;
-  }, [searchTerm, category, sortBy]);
+    return filtered;
+  }, [searchTerm, category, sortBy, createdDate]);
 
   return (
     <Container maxWidth="md" sx={{ px: 3, pt: 1, pb: 3 }}>
@@ -98,29 +99,50 @@ function ProductList({ products }: ProductProps) {
                 </Select>
               </FormControl>
 
-              <FormControl fullWidth>
-                <InputLabel>Sort By</InputLabel>
-                <Select label="Sort By" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                  <MenuItem value="default">Default</MenuItem>
-                  <MenuItem value="price-low-high">Price: Low to High</MenuItem>
-                  <MenuItem value="price-high-low">Price: High to Low</MenuItem>
-                </Select>
-              </FormControl>
+              <TextField
+                fullWidth
+                type="date"
+                label="Created Date"
+                value={createdDate}
+                onChange={(e) => setCreatedDate(e.target.value)}
+                slotProps={{ inputLabel: { shrink: true } }}
+              />
             </Box>
 
             <p>
               <strong>Results:</strong> {computedProducts.length}
             </p>
 
-            <ul className="product-list">
-              {computedProducts.map((product) => (
-                <li key={product.id} className="product-item">
-                  <span>{product.name}</span>
-                  <span>{product.category}</span>
-                  <span>${product.price}</span>
-                </li>
-              ))}
-            </ul>
+            <Table size="small" aria-label="a dense table">
+              <TableHead sx={{ backgroundColor: 'grey.100', '& .MuiTableCell-root': { fontWeight: 'bold' } }}>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Category</TableCell>
+                  <TableCell
+                    onClick={() => setSortBy((prev) => (prev === 'asc' ? 'desc' : 'asc'))}
+                    sx={{ cursor: 'pointer', userSelect: 'none' }}
+                  >
+                    Price{' '}
+                    {sortBy === 'asc' ? (
+                      <ArrowUpwardIcon fontSize="inherit" />
+                    ) : (
+                      <ArrowDownwardIcon fontSize="inherit" />
+                    )}
+                  </TableCell>
+                  <TableCell>Created Date</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {computedProducts.map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell>{product.name}</TableCell>
+                    <TableCell>{product.category}</TableCell>
+                    <TableCell>${product.price}</TableCell>
+                    <TableCell>{product.createdDate}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </Paper>
         </Grid>
       </Grid>
