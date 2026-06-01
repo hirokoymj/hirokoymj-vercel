@@ -11,10 +11,11 @@ import { PageFooter } from '../pages/base/PageFooter';
 const useStyles = makeStyles()((theme: Theme) => ({
   root: {
     display: 'flex',
+    minHeight: '100vh',
   },
   content: {
     flexGrow: 1,
-    height: '100vh',
+    minHeight: '100vh',
     paddingTop: '48px', // match your AppBar height
   },
   container: {
