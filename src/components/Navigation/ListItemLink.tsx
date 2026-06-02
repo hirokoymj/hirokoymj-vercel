@@ -96,9 +96,6 @@ export const LeftNaviagtion = () => {
           icon={<ArticleOutlinedIcon />}
           isActive={currentPath.includes('/tech')}
         />
-      </List>
-      <Divider />
-      <List>
         <ListItemLink
           to="/category"
           text="Create Category"

@@ -48,7 +48,7 @@ export const CategoryLayout = () => {
   };
 
   return (
-    <>
+    <Container maxWidth="lg">
       <Outlet />
       <Grid container spacing={3} justifyContent="center">
         <Grid size={12}>
@@ -81,6 +81,6 @@ export const CategoryLayout = () => {
         cancelLabel="Cancel"
         cancel={handleClose}
       />
-    </>
+    </Container>
   );
 };
