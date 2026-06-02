@@ -17,7 +17,7 @@ const headerInfo = {
 };
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
 });
 
 const weatherFunctionDeclaration = {
@@ -37,7 +37,7 @@ const weatherFunctionDeclaration = {
 
 // Weather API fetcher
 async function getCurrentWeather({ location }) {
-  const apiKey = process.env.OPENWEATHER_API_KEY;
+  const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
   try {
     const currentRes = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
