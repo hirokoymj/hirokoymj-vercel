@@ -55,15 +55,7 @@ interface AlertDialogProps {
   cancel?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const AlertDialog: React.FC<AlertDialogProps> = ({
-  open,
-  title,
-  content,
-  action,
-  actionLabel,
-  onClose,
-  cancelLabel,
-}) => {
+export const AlertDialog = ({ open, title, content, action, actionLabel, onClose, cancelLabel }: AlertDialogProps) => {
   const { classes } = useStyles();
 
   return (

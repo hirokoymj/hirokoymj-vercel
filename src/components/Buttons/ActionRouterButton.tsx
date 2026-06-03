@@ -27,7 +27,7 @@ interface ActionRouterButtonProps {
   children: React.ReactNode;
 }
 
-export const ActionRouterButton: React.FC<ActionRouterButtonProps> = ({ to, children }) => {
+export const ActionRouterButton = ({ to, children }: ActionRouterButtonProps) => {
   const { classes } = useStyles();
 
   return (
