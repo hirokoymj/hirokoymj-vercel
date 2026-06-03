@@ -21,7 +21,7 @@ interface RouterButtonProps {
   text: string;
 }
 
-export const RouterButton: React.FC<RouterButtonProps> = ({ to, text }) => {
+export const RouterButton = ({ to, text }: RouterButtonProps) => {
   const { classes } = useStyles();
 
   return (

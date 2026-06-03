@@ -13,7 +13,7 @@ enum Theme {
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const themeName = useAppSelector((state) => state.theme.name);
 
   return (

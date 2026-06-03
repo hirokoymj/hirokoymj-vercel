@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { ApolloError } from '@apollo/client';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -9,12 +9,12 @@ interface QueryResultProps {
   data?: unknown;
 }
 
-export const QueryResult: React.FC<PropsWithChildren<QueryResultProps>> = ({
+export const QueryResult = ({
   loading,
   error,
   data,
   children,
-}): React.ReactElement<any, any> | null => {
+}: PropsWithChildren<QueryResultProps>) => {
   if (error) {
     return <p>ERROR: {error.message}</p>;
   }
