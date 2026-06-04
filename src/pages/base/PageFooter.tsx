@@ -1,6 +1,8 @@
 import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
 import { makeStyles } from 'tss-react/mui';
 import { Theme } from '@mui/material/styles';
+import resumePdf from '../../assets/resume.pdf';
 
 const useStyles = makeStyles()((theme: Theme) => ({
   footer: {
@@ -20,6 +22,11 @@ export const PageFooter = () => {
     <footer className={classes.footer}>
       <Typography variant="body2" color="textSecondary">
         &copy; {new Date().getFullYear()} hirokoymj.com All rights reserved.
+      </Typography>
+      <Typography variant="body2">
+        <Link href={resumePdf} target="_blank" rel="noopener noreferrer">
+          Resume
+        </Link>
       </Typography>
     </footer>
   );
