@@ -58,7 +58,7 @@ export const LeftNaviagtion = () => {
     <>
       <List>
         <ListItemLink
-          to="/fifa"
+          to="/"
           text="FIFA World Cup"
           icon={<SportsSoccerIcon />}
           isActive={currentPath.includes('/fifa')}

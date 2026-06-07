@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import PageLoader from './components/ErrorBoundary/PageLoader';
 import ProtectedRoute from './auth0/ProtectedRoute';
@@ -37,7 +37,7 @@ export default function App() {
         <Routes>
           <Route path="callback" element={<CallbackPage />} />
           <Route path="/" element={<RootLayout />}>
-            <Route index element={<Navigate to="/weather/dallas" />} />
+            <Route index element={<WorldCupPage />} />
             <Route path="signup" element={<SignupPage />} />
             <Route
               path="dashboard"
@@ -64,7 +64,6 @@ export default function App() {
             </Route>
             <Route path="ai-recipe" element={<RecipePage />} />
             <Route path="ai-weather" element={<WeatherChatPage />} />
-            <Route path="fifa" element={<WorldCupPage />} />
             <Route path="search" element={<ProductSearch />} />
             <Route path="*" element={<NotFound />} />
             {/* <Route path="ai-summary" element={<SummaryPage />} />
