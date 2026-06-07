@@ -23,6 +23,7 @@ import { WeatherChatPage } from './pages/ai-weather/WeatherChatPage';
 import { TextGenPage } from './pages/ai-text-generator/TextGenPage';
 import { FileChatPage } from './pages/ai-file-chat/FileChatPage';
 import { ProductSearch } from './pages/search/ProductSearch';
+import WorldCupPage from './pages/fifa/WorldCupPage';
 
 //code splitting for authentication pages
 const CallbackPage = lazy(() => import('./pages/auth/CallbackPage'));
@@ -63,6 +64,7 @@ export default function App() {
             </Route>
             <Route path="ai-recipe" element={<RecipePage />} />
             <Route path="ai-weather" element={<WeatherChatPage />} />
+            <Route path="fifa" element={<WorldCupPage />} />
             <Route path="search" element={<ProductSearch />} />
             <Route path="*" element={<NotFound />} />
             {/* <Route path="ai-summary" element={<SummaryPage />} />

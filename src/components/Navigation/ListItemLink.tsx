@@ -5,6 +5,7 @@ import List from '@mui/material/List';
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import SearchIcon from '@mui/icons-material/Search';
 import Divider from '@mui/material/Divider';
 import { Link, useLocation } from 'react-router-dom';
@@ -55,6 +56,15 @@ export const LeftNaviagtion = () => {
 
   return (
     <>
+      <List>
+        <ListItemLink
+          to="/fifa"
+          text="FIFA World Cup"
+          icon={<SportsSoccerIcon />}
+          isActive={currentPath.includes('/fifa')}
+        />
+      </List>
+      <Divider />
       <List>
         <ListItemLink
           to="/weather/dallas"
